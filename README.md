@@ -1,6 +1,6 @@
-# 🎂 Happy 18th Birthday Manahil! 
+# Happy 18th Birthday Manahil! 
 
-A magical, emotional, and interactive birthday surprise website built with pure HTML, CSS, and JavaScript. No frameworks, no dependencies — just love, creativity, and lots of confetti! ✨
+A magical, emotional, and interactive birthday surprise website built with pure HTML, CSS, and JavaScript. No frameworks, no dependencies — just love, creativity, and lots of confetti!
 
 ---
 
@@ -183,7 +183,7 @@ In `index.html`, find `18th Birthday` and replace with the correct age.
 ## Credits
 
 Made with endless love for **Manahil** by her sister.  
-Every line of code is a heartbeat. Every animation is a hug. Every page is a memory. 💕
+Every line of code is a heartbeat. Every animation is a hug. Every page is a memory. 
 
 > *"Nothing beats a digital birthday wish"* — and nothing beats a sister's love.
 
