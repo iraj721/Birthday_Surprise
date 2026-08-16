@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For You, Manahil 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&family=Dancing+Script:wght@600;700&family=Fredoka+One&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+    <div id="confetti-container"></div>
+    <div id="floating-hearts-container"></div>
+
+    <!-- ==================== PAGE 1: I MADE SOMETHING FOR YOU ==================== -->
+    <div id="page-intro" class="page active">
+        <div class="intro-wrapper">
+            <div class="star-decor" style="top:10px;left:20px;">⭐</div>
+            <div class="star-decor" style="top:25px;right:25px;animation-delay:0.5s;">✨</div>
+            <div class="star-decor" style="bottom:80px;left:15px;animation-delay:1s;">💫</div>
+            <div class="star-decor" style="bottom:95px;right:20px;animation-delay:1.5s;">⭐</div>
+
+            <div class="torn-paper">
+                <div class="paper-inner">
+                    <div class="intro-text">I made something for you</div>
+                    
+                    <div class="cat-character">
+                        <div class="cat-ear left"></div>
+                        <div class="cat-ear right"></div>
+                        <div class="cat-head">
+                            <div class="cat-face">
+                                <div class="cat-eyes">
+                                    <div class="cat-eye left"><div class="eye-shine"></div></div>
+                                    <div class="cat-eye right"><div class="eye-shine"></div></div>
+                                </div>
+                                <div class="cat-nose"></div>
+                                <div class="cat-mouth"></div>
+                                <div class="cat-blush left"></div>
+                                <div class="cat-blush right"></div>
+                            </div>
+                        </div>
+                        <div class="cat-paws">
+                            <div class="cat-paw"></div>
+                            <div class="cat-paw"></div>
+                        </div>
+                        <div class="cat-tail"></div>
+                    </div>
+
+                    <button class="what-btn" onclick="goToWillYouSee()">
+                        <span class="btn-shine"></span>
+                        WHAT??
+                    </button>
+                </div>
+                <div class="paper-tear bottom"></div>
+            </div>
+            
+            <div class="floating-note" style="top:8%;right:15%;animation-delay:0.5s;">💌</div>
+            <div class="floating-note" style="bottom:15%;left:12%;animation-delay:1.5s;">🎀</div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 2: WILL YOU SEE IT?? ==================== -->
+    <div id="page-choice" class="page">
+        <div class="choice-wrapper">
+            <div class="choice-box">
+                <div class="choice-title">Will you see it??</div>
+                
+                <div class="hearts-toggle">
+                    <div class="heart-option no-option" id="noHeart" onclick="handleNoClick()">
+                        <div class="heart-shape">
+                            <div class="heart-inner">
+                                <span class="toggle-text">NO...</span>
+                                <div class="sad-face">😢</div>
+                            </div>
+                        </div>
+                        <div class="heart-shadow"></div>
+                    </div>
+                    
+                    <div class="heart-option yes-option" id="yesHeart" onclick="handleYesClick()">
+                        <div class="heart-shape">
+                            <div class="heart-inner">
+                                <span class="toggle-text">YES!!!</span>
+                                <div class="happy-face">🥰</div>
+                            </div>
+                        </div>
+                        <div class="heart-shadow"></div>
+                        <div class="heart-glow-ring"></div>
+                    </div>
+                </div>
+
+                <div class="choice-message" id="choiceMsg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 3: PASSWORD ==================== -->
+    <div id="page-password" class="page">
+        <div class="password-container">
+            <div class="pass-lock-icon">🔐</div>
+            <div class="password-title">If you wanna see your surprise</div>
+            <div class="password-subtitle">Enter the passcode</div>
+            <div class="password-hint">💡 Hint: It's your birthday year (2008)</div>
+
+            <div class="passcode-display">
+                <div class="passcode-box" id="box1"></div>
+                <div class="passcode-box" id="box2"></div>
+                <div class="passcode-box" id="box3"></div>
+                <div class="passcode-box" id="box4"></div>
+            </div>
+
+            <div class="numpad">
+                <button class="numpad-btn" onclick="enterDigit(1)">1</button>
+                <button class="numpad-btn" onclick="enterDigit(2)">2</button>
+                <button class="numpad-btn" onclick="enterDigit(3)">3</button>
+                <button class="numpad-btn" onclick="enterDigit(4)">4</button>
+                <button class="numpad-btn" onclick="enterDigit(5)">5</button>
+                <button class="numpad-btn" onclick="enterDigit(6)">6</button>
+                <button class="numpad-btn" onclick="enterDigit(7)">7</button>
+                <button class="numpad-btn" onclick="enterDigit(8)">8</button>
+                <button class="numpad-btn" onclick="enterDigit(9)">9</button>
+                <button class="numpad-btn clear" onclick="clearPasscode()">✖</button>
+                <button class="numpad-btn" onclick="enterDigit(0)">0</button>
+                <button class="numpad-btn check" onclick="checkPasscode()">✓</button>
+            </div>
+
+            <div class="error-msg" id="error-msg"></div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 4: HAPPY BIRTHDAY ==================== -->
+    <div id="page-birthday" class="page">
+        <div class="party-hat" style="top:4%;left:6%;">🎉</div>
+        <div class="party-hat" style="top:6%;right:7%;animation-delay:0.5s;">🎊</div>
+        <div class="party-hat" style="bottom:12%;left:4%;animation-delay:1s;">✨</div>
+        <div class="party-hat" style="bottom:15%;right:5%;animation-delay:1.5s;">🎈</div>
+
+        <div class="birthday-content">
+            <div class="happy-text">
+                <span>H</span><span>a</span><span>p</span><span>p</span><span>y</span>
+            </div>
+            <div class="birthday-text">
+                <span>B</span><span>i</span><span>r</span><span>t</span><span>h</span><span>d</span><span>a</span><span>y</span>
+            </div>
+
+            <div class="camera-frame">
+                <div class="camera-screen">
+                    <div class="cake-emoji">🎂</div>
+                    <div class="candle-flame"></div>
+                </div>
+                <div class="camera-lens"></div>
+                <div class="camera-btn"></div>
+                <div class="camera-sticker">🎀</div>
+            </div>
+
+            <div class="name-display">Manahil ❤️</div>
+            <div class="age-display">✨ 18th Birthday ✨</div>
+
+            <button class="next-btn magical-btn" onclick="showPage('page-menu')">
+                <span class="btn-sparkle">✨</span>
+                Open Your Surprise ➜
+                <span class="btn-sparkle">✨</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 5: MAIN MENU ==================== -->
+    <div id="page-menu" class="page">
+        <div class="menu-wrapper">
+            <div class="menu-title">✨ Click to Open ✨</div>
+            <div class="menu-subtitle">Your birthday surprises await...</div>
+            <div class="items-grid">
+                <div class="item-card" onclick="showPage('page-certificate')">
+                    <div class="item-icon-bg">📜</div>
+                    <div class="item-label">Certificate</div>
+                    <div class="item-sparkle">✦</div>
+                </div>
+                <div class="item-card" onclick="showPage('page-letter')">
+                    <div class="item-icon-bg">💌</div>
+                    <div class="item-label">Love Letter</div>
+                    <div class="item-sparkle">✦</div>
+                </div>
+                <div class="item-card" onclick="showPage('page-jar')">
+                    <div class="item-icon-bg">🫙</div>
+                    <div class="item-label">Wish Jar</div>
+                    <div class="item-sparkle">✦</div>
+                </div>
+                <div class="item-card" onclick="showPage('page-reasons')">
+                    <div class="item-icon-bg">💕</div>
+                    <div class="item-label">Why I Love You</div>
+                    <div class="item-sparkle">✦</div>
+                </div>
+                <div class="item-card" onclick="showPage('page-gift')">
+                    <div class="item-icon-bg">🎁</div>
+                    <div class="item-label">Surprise Gift</div>
+                    <div class="item-sparkle">✦</div>
+                </div>
+                <div class="item-card" onclick="showPage('page-final')">
+                    <div class="item-icon-bg">🌟</div>
+                    <div class="item-label">Final Words</div>
+                    <div class="item-sparkle">✦</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 6: CERTIFICATE ==================== -->
+    <div id="page-certificate" class="page">
+        <div class="certificate-full-page">
+            <button class="back-btn cert-back" onclick="showPage('page-menu')">←</button>
+            <div class="certificate-frame" id="certificateContent">
+                <div class="cert-corner top-left">✦</div>
+                <div class="cert-corner top-right">✦</div>
+                <div class="cert-corner bottom-left">✦</div>
+                <div class="cert-corner bottom-right">✦</div>
+                
+                <div class="cert-inner">
+                    <div class="cert-ribbon">🏆</div>
+                    <div class="cert-title">Certificate of Recognition</div>
+                    <div class="cert-subtitle">This Certificate is Proudly Presented To</div>
+                    <div class="cert-name">Manahil</div>
+                    <div class="cert-subtitle-2">In Recognition of Being the Most Precious Soul</div>
+                    
+                    <div class="cert-text">
+                        For being my best friend, my safe place, my partner in crime, and the person I needed the most.<br>
+                        Thank you for your unconditional love, endless support, and being my forever favorite person. 💖
+                    </div>
+                    
+                    <div class="cert-footer">
+                        <div class="cert-left">
+                            <div class="cert-signature">_________________</div>
+                            <div class="cert-signature-label">Sister</div>
+                        </div>
+                        <div class="cert-middle">
+                            <div class="cert-seal">🎖️</div>
+                        </div>
+                        <div class="cert-right">
+                            <div class="cert-date">August 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cert-actions">
+                <button class="download-cert-btn" onclick="downloadCertificate()">📥 Download Certificate</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 7: LOVE LETTER ==================== -->
+    <div id="page-letter" class="page sub-page">
+        <div class="sub-wrapper">
+            <div class="sub-content letter-page">
+                <button class="back-btn" onclick="showPage('page-menu')">←</button>
+
+                <div class="polaroids-row">
+                    <div class="polaroid" style="transform:rotate(-10deg);">
+                        <div class="polaroid-img">👭</div>
+                        <div class="polaroid-caption">Us</div>
+                    </div>
+                    <div class="polaroid" style="transform:rotate(6deg);margin-top:20px;">
+                        <div class="polaroid-img">💖</div>
+                        <div class="polaroid-caption">Forever</div>
+                    </div>
+                    <div class="polaroid" style="transform:rotate(-4deg);">
+                        <div class="polaroid-img">🌸</div>
+                        <div class="polaroid-caption">Sisters</div>
+                    </div>
+                </div>
+
+                <div class="letter-paper">
+                    <div class="letter-stamp">💌</div>
+                    <div class="letter-title">With All My Love</div>
+                    <div class="letter-body" id="letter-body">
+                        <p>My Dearest Manahil,</p>
+                        <p>Happy 18th Birthday to the most beautiful soul I know. 🎂</p>
+                        <p>I still remember the day you were born — I became a sister, and my life changed forever. From fighting over the remote to sharing our deepest secrets at 2 AM, every moment with you is a treasure I keep locked in my heart.</p>
+                        <p>You have this magical ability to make everything better just by being there. When I cry, you cry with me. When I laugh, you laugh louder. You are my safe harbor in every storm.</p>
+                        <p>As you step into adulthood today, I want you to know — you are enough. You are worthy. You are capable of achieving every single dream your heart holds. Never let anyone dim your light, because you shine brighter than the stars.</p>
+                        <p>I am so proud of the woman you are becoming. Strong, kind, funny, and absolutely irreplaceable.</p>
+                        <p>Thank you for being my sister. Thank you for being my best friend. Thank you for simply being YOU.</p>
+                        <p>I love you more than words could ever express. To the moon, to the stars, and back — infinitely. 🌙💕</p>
+                    </div>
+                    <div class="letter-signature">Forever Yours,<br>Your Loving Sister ❤️</div>
+                    <div class="letter-wax">❤️</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 8: WISH JAR ==================== -->
+    <div id="page-jar" class="page sub-page">
+        <div class="sub-wrapper">
+            <div class="sub-content jar-page">
+                <button class="back-btn" onclick="showPage('page-menu')">←</button>
+                <div class="jar-title">✨ Wishes For You ✨</div>
+
+                <!-- Closed Jar -->
+                <div class="jar-closed-scene" id="jarClosedScene">
+                    <div class="big-jar" onclick="openJar()">
+                        <div class="big-jar-lid"></div>
+                        <div class="big-jar-body">
+                            <div class="jar-shine">✨</div>
+                        </div>
+                        <div class="jar-label">🫙</div>
+                    </div>
+                    <div class="jar-click-text">Click to open the jar!</div>
+                    <div class="jar-hint">Your wishes are waiting inside...</div>
+                </div>
+
+                <!-- Opened Jar -->
+                <div class="jar-opened-scene" id="jarOpenedScene" style="display:none;">
+                    <div class="opened-jar">
+                        <div class="opened-jar-lid"></div>
+                        <div class="opened-jar-body"></div>
+                    </div>
+                    
+                    <div class="letters-container" id="lettersContainer">
+                        <div class="mini-letter" style="--i:0" onclick="openLetter(0)">
+                            <div class="mini-envelope">💌</div>
+                            <div class="mini-num">1</div>
+                        </div>
+                        <div class="mini-letter" style="--i:1" onclick="openLetter(1)">
+                            <div class="mini-envelope">💌</div>
+                            <div class="mini-num">2</div>
+                        </div>
+                        <div class="mini-letter" style="--i:2" onclick="openLetter(2)">
+                            <div class="mini-envelope">💌</div>
+                            <div class="mini-num">3</div>
+                        </div>
+                        <div class="mini-letter" style="--i:3" onclick="openLetter(3)">
+                            <div class="mini-envelope">💌</div>
+                            <div class="mini-num">4</div>
+                        </div>
+                        <div class="mini-letter" style="--i:4" onclick="openLetter(4)">
+                            <div class="mini-envelope">💌</div>
+                            <div class="mini-num">5</div>
+                        </div>
+                        <div class="mini-letter" style="--i:5" onclick="openLetter(5)">
+                            <div class="mini-envelope">💌</div>
+                            <div class="mini-num">6</div>
+                        </div>
+                    </div>
+
+                    <div class="jar-progress" id="jarProgress">Opened: 0 / 6</div>
+                </div>
+
+                <!-- Letter Modal -->
+                <div class="letter-modal" id="letterModal" style="display:none;" onclick="closeLetterModal(event)">
+                    <div class="letter-modal-content" onclick="event.stopPropagation()">
+                        <button class="modal-close" onclick="closeLetterModal()">✖</button>
+                        <div class="modal-emoji">💌</div>
+                        <div class="modal-wish" id="modalWishText"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 9: WHY I LOVE YOU ==================== -->
+    <div id="page-reasons" class="page sub-page">
+        <div class="sub-wrapper">
+            <div class="sub-content reasons-page">
+                <button class="back-btn" onclick="showPage('page-menu')">←</button>
+                <div class="reasons-title">💕 10 Reasons Why<br>You're The Best 💕</div>
+
+                <div class="reasons-list">
+                    <div class="reason-card" style="animation-delay:0.1s;">
+                        <div class="reason-num">01</div>
+                        <div class="reason-text">You always know how to make me laugh, even when I'm at my lowest.</div>
+                    </div>
+                    <div class="reason-card" style="animation-delay:0.2s;">
+                        <div class="reason-num">02</div>
+                        <div class="reason-text">You never judge me — you just listen, understand, and hug me.</div>
+                    </div>
+                    <div class="reason-card" style="animation-delay:0.3s;">
+                        <div class="reason-num">03</div>
+                        <div class="reason-text">You share your food with me (and that's the highest form of love).</div>
+                    </div>
+                    <div class="reason-card" style="animation-delay:0.4s;">
+                        <div class="reason-num">04</div>
+                        <div class="reason-text">You protect me like a lioness, even though you're younger.</div>
+                    </div>
+                    <div class="reason-card" style="animation-delay:0.5s;">
+                        <div class="reason-num">05</div>
+                        <div class="reason-text">You remember every little thing that matters to me.</div>
+                    </div>
+                    <div class="reason-card" style="animation-delay:0.6s;">
+                        <div class="reason-num">06</div>
+                        <div class="reason-text">Your smile can light up the darkest room in seconds.</div>
+                    </div>
+                    <div class="reason-card" style="animation-delay:0.7s;">
+                        <div class="reason-num">07</div>
+                        <div class="reason-text">You give the best advice, even when I don't ask for it.</div>
+                    </div>
+                    <div class="reason-card" style="animation-delay:0.8s;">
+                        <div class="reason-num">08</div>
+                        <div class="reason-text">You are my personal therapist, stylist, and comedian — all in one.</div>
+                    </div>
+                    <div class="reason-card" style="animation-delay:0.9s;">
+                        <div class="reason-num">09</div>
+                        <div class="reason-text">You believe in me even when I stop believing in myself.</div>
+                    </div>
+                    <div class="reason-card" style="animation-delay:1.0s;">
+                        <div class="reason-num">10</div>
+                        <div class="reason-text">You are simply YOU — and that is my favorite thing in the entire world.</div>
+                    </div>
+                </div>
+
+                <div class="reasons-footer">I could write a thousand more... 💗</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 10: SURPRISE GIFT ==================== -->
+    <div id="page-gift" class="page sub-page">
+        <div class="sub-wrapper">
+            <div class="sub-content gift-page">
+                <button class="back-btn" onclick="showPage('page-menu')">←</button>
+
+                <div class="gift-scene" id="gift-scene">
+                    <div class="gift-box" id="gift-box" onclick="openGift()">
+                        <div class="gift-lid">
+                            <div class="gift-bow">
+                                <div class="bow-loop left"></div>
+                                <div class="bow-loop right"></div>
+                                <div class="bow-knot"></div>
+                            </div>
+                        </div>
+                        <div class="gift-body">
+                            <div class="gift-ribbon-v"></div>
+                            <div class="gift-ribbon-h"></div>
+                        </div>
+                        <div class="gift-shine">✨</div>
+                    </div>
+                    <div class="gift-text" id="gift-text">Tap to open your gift!</div>
+                </div>
+
+                <div class="gift-reveal" id="gift-reveal" style="display:none;">
+                    <div class="reveal-heart" id="reveal-heart" onclick="triggerMagic()">
+                        <div class="heart-glow"></div>
+                        <div class="heart-emoji">❤️</div>
+                        <div class="heart-pulse"></div>
+                    </div>
+                    <div class="reveal-text">Touch the heart...</div>
+                </div>
+
+                <div class="magic-message" id="magic-message" style="display:none;">
+                    <div class="magic-bg-hearts"></div>
+                    <div class="magic-content">
+                        <div class="magic-emoji">🥺💕</div>
+                        <div class="magic-title">You Are My Everything</div>
+                        <div class="magic-body" id="magic-typewriter"></div>
+                        <div class="magic-signature">— Your Sister, Forever</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 11: FINAL WORDS ==================== -->
+    <div id="page-final" class="page">
+        <div class="final-wrapper">
+            <button class="back-btn" onclick="showPage('page-menu')">←</button>
+            <div class="puppy-scene">
+                <div class="puppy-ears">
+                    <div class="ear left"></div>
+                    <div class="ear right"></div>
+                </div>
+                <div class="puppy-face">
+                    <div class="puppy-eyes">
+                        <div class="p-eye"></div>
+                        <div class="p-eye"></div>
+                    </div>
+                    <div class="puppy-nose"></div>
+                    <div class="puppy-mouth"></div>
+                    <div class="puppy-blush"></div>
+                    <div class="puppy-tongue">👅</div>
+                </div>
+                <div class="puppy-paws">
+                    <div class="paw"></div>
+                    <div class="paw"></div>
+                </div>
+                <div class="puppy-heart">💗</div>
+            </div>
+
+            <div class="final-text" id="final-text">
+                May all the good things<br>you've been waiting for<br>finally find you this year
+            </div>
+            <div class="final-subtext">Happy 18th Birthday, Manahil! 🎂✨</div>
+
+            <button class="heart-btn" onclick="triggerFinalMagic()">❤️</button>
+            <div class="final-hint">Tap the heart for one last surprise</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
