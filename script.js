@@ -1,20 +1,58 @@
 // ===================== PAGE NAVIGATION =====================
 function showPage(pageId) {
+    // Sirf URL hash update karo — baqi kaam hashchange event karega
+    // Is se browser back button, mobile back gesture, aur URL sab sync mein rahenge
+    if (location.hash !== '#' + pageId) {
+        location.hash = pageId;
+    }
+}
+
+// Browser back/forward button + mobile back gesture support
+window.addEventListener('hashchange', function() {
+    const pageId = location.hash.replace('#', '') || 'page-intro';
+    
+    // Sab pages hide karo
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
     });
-    document.getElementById(pageId).classList.add('active');
+    
+    // Target page dikhayo
+    const target = document.getElementById(pageId);
+    if (target) {
+        target.classList.add('active');
+    }
 
+    // Special effects jab specific pages khulen
     if (pageId === 'page-birthday' || pageId === 'page-final') {
         createConfetti(30);
     }
-
     if (pageId === 'page-gift') {
         setTimeout(() => createFloatingHearts(8), 500);
     }
 
+    // Choice page reset jab wapas aaye
+    if (pageId === 'page-choice') {
+        const noHeart = document.getElementById('noHeart');
+        const choiceMsg = document.getElementById('choiceMsg');
+        if (noHeart) noHeart.style.transform = '';
+        if (choiceMsg) choiceMsg.textContent = '';
+        noClickCount = 0;
+    }
+
+    // Password page reset jab wapas aaye
+    if (pageId === 'page-password') {
+        passcode = '';
+        updatePasscodeDisplay();
+        const err = document.getElementById('error-msg');
+        if (err) {
+            err.textContent = '';
+            err.style.color = '#e53935';
+        }
+    }
+
+    // Top pe scroll karo
     window.scrollTo(0, 0);
-}
+});
 
 // ===================== INTRO PAGE =====================
 function goToWillYouSee() {
@@ -354,7 +392,7 @@ function triggerFinalMagic() {
         max-width: 320px;
         width: 90%;
     `;
-        specialMsg.innerHTML = `
+    specialMsg.innerHTML = `
         <div style="font-size:50px;margin-bottom:10px;">🥺💕</div>
         <div style="font-family:'Dancing Script',cursive;font-size:24px;color:#ff4081;margin-bottom:10px;">I Love You, Manahil</div>
         <div style="font-size:14px;color:#666;line-height:1.6;">Thank you for being the most amazing sister in the world. This day is all about YOU! 🎂✨</div>
@@ -365,6 +403,15 @@ function triggerFinalMagic() {
 
 // ===================== INITIAL LOAD =====================
 window.onload = function() {
+    // Agar URL mein hash hai (e.g. index.html#page-menu) toh woh page kholo
+    const pageId = location.hash.replace('#', '') || 'page-intro';
+    if (pageId !== 'page-intro') {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        const target = document.getElementById(pageId);
+        if (target) target.classList.add('active');
+        if (pageId === 'page-birthday' || pageId === 'page-final') createConfetti(30);
+        if (pageId === 'page-gift') setTimeout(() => createFloatingHearts(8), 500);
+    }
     createConfetti(20);
 };
 
