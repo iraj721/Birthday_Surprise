@@ -32,6 +32,12 @@ html, body {
     justify-content: center;
     animation: pageFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
+#page-certificate.page.active {
+    overflow-y: auto;
+    justify-content: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
 @keyframes pageFadeIn {
     from { opacity: 0; transform: scale(0.95) translateY(20px); }
@@ -1103,7 +1109,8 @@ html, body {
 
 .certificate-frame {
     width: 95vw;
-    height: 65vh;
+    min-height: 85vh;
+    height: auto;
     max-width: 1200px;
     background: linear-gradient(135deg, #f5f1de 0%, #fffef5 50%, #f0ead8 100%);
     border: 4px solid #8b7355;
@@ -1116,7 +1123,7 @@ html, body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .certificate-frame::before {
@@ -2193,15 +2200,24 @@ html, body {
     .item-icon-bg { width: 50px; height: 50px; font-size: 26px; }
     .item-label { font-size: 11px; }
     .sub-content { padding: 18px 12px; }
-    .certificate-frame { 
+        .certificate-frame { 
         width: 98vw;
-        height: 75vh;
-        padding: 30px 20px;
+        height: auto;
+        min-height: auto;
+        padding: 20px 15px;
         border: 3px solid #8b7355;
     }
-    .cert-title { font-size: 32px; }
-    .cert-name { font-size: 42px; }
-    .cert-text { font-size: 12px; }
+    .cert-title { font-size: 22px; }
+    .cert-name { font-size: 28px; }
+    .cert-text { font-size: 11px; line-height: 1.5; }
+    .cert-subtitle { font-size: 11px; }
+    .cert-subtitle-2 { font-size: 10px; }
+    .cert-footer { margin-top: 12px; gap: 10px; }
+    .cert-signature { min-width: 70px; font-size: 9px; }
+    .cert-signature-label { font-size: 10px; }
+    .cert-date { font-size: 10px; }
+    .cert-seal { font-size: 28px; }
+    .cert-ribbon { font-size: 30px; }
     .cert-footer { flex-wrap: wrap; gap: 10px; }
     .cert-signature { min-width: 100px; }
     .download-cert-btn { padding: 11px 26px; font-size: 13px; }
